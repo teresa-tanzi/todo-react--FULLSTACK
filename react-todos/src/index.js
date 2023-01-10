@@ -7,9 +7,11 @@ import reportWebVitals from './reportWebVitals';
 // Looks in document (HTML file) and find the first element that has the id 'root'
 // than replasec it with our React application (App.js)
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// We hook to the element with id "root" this component
+// App is a component: App.js
 root.render(
   <React.StrictMode>
-    <App />
+    <App /> 
   </React.StrictMode>
 );
 
