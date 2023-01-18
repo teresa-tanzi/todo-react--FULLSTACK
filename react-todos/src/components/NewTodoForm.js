@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-function NewTodoForm() {
+function NewTodoForm(props) {
     const [description, setDescription] = useState('');
     const [assigned, setAssigned] = useState('');
 
@@ -13,6 +13,17 @@ function NewTodoForm() {
     const assignedChange = (event) => {
         console.log('assigned', event.target.value);
         setAssigned(event.target.value);
+    }
+
+    const submitTodo = () => {
+        // if one of the inputs is empty, we will not submit the todo
+        if (description !== '' && assigned !== '') {
+            // we call the App.js assTodo
+            props.addTodo(description, assigned);
+            // reassign description and assigned back to empty string
+            setDescription('');
+            setAssigned('');
+        }
     }
 
     return(
@@ -36,9 +47,15 @@ function NewTodoForm() {
                         required
                         onChange={e => setDescription(e.target.value)}
                         value={description}
-                        ></textarea>
+                    ></textarea>
                 </div>
-                <button type="button" className="btn btn-primary mt-3">Add Todo</button>
+                <button
+                    type="button" 
+                    className="btn btn-primary mt-3" 
+                    onClick={submitTodo}
+                >
+                    Add Todo
+                </button>
             </form>
         </div>
     )
